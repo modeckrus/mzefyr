@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mzefyr/formula-editor-widget.dart';
 import 'package:zefyr/zefyr.dart';
 
 class MDZefyrToolbarDelegate implements ZefyrToolbarDelegate {
@@ -75,8 +76,8 @@ class MDZefyrToolbarDelegate implements ZefyrToolbarDelegate {
                 final image = (await editor.imageDelegate
                     .pickImage(editor.imageDelegate.gallerySource));
                 if (image != null) {
-                  editor.formatSelection(NotusAttribute.embed.image('super'+image));
-                  
+                  editor.formatSelection(
+                      NotusAttribute.embed.image('super' + image));
                 }
 
                 Scaffold.of(context).showBottomSheet((context) {
@@ -106,29 +107,12 @@ class MDZefyrToolbarDelegate implements ZefyrToolbarDelegate {
                 //     .pickImage(editor.imageDelegate.gallerySource));
                 // if (image != null) {
                 //   editor.formatSelection(NotusAttribute.embed.image('super'+image));
-                  
+
                 // }
-                
 
                 Scaffold.of(context).showBottomSheet((context) {
-                  return Container(
-                    height: 200,
-                    child: Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Put the formula hear',
-                            style: TextStyle(fontSize: 24),
-                          ),
-                          TextField(),
-                          RaisedButton(onPressed: (){
-
-                          },
-                          child: Text('Send'),),
-                          
-                        ],
-                      ),
-                    ),
+                  return FormulaEditorWidget(
+                    editor: editor,
                   );
                 });
               },
